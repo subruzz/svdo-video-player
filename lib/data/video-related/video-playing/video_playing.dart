@@ -1,6 +1,6 @@
-import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/services.dart';
+import 'package:video_player/video_player.dart';
 
 class VideoPlayingHelper {
   static Future setAllOrientation() async {

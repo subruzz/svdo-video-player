@@ -26,16 +26,21 @@ class _PlayListScreenState extends ConsumerState<PlayListScreen> {
 
 //rename the playlist
   void renamePlaylist(var key) {
-    ref
+    final isAlreadyThere = ref
         .read(playListProvider.notifier)
         .renamePlaylist(key, _renameController.text);
     Navigator.pop(context);
-    TopSnackBar.showCustomSnackBarSuccess(
-        context, 'Playlist Renamed To ${_renameController.text}');
+    if (isAlreadyThere) {
+      TopSnackBar.showCustomSnackBarError(
+          context, 'Playlist Already exist');
+    } else {
+      TopSnackBar.showCustomSnackBarSuccess(
+          context, 'Playlist Renamed To ${_renameController.text}');
+    }
   }
 
 //when user clickthe rename popup
-  void renameClick(WidgetRef ref, var key,String previousName) {
+  void renameClick(WidgetRef ref, var key, String previousName) {
     Navigator.pop(context);
     showDialog(
       context: context,
@@ -53,18 +58,15 @@ class _PlayListScreenState extends ConsumerState<PlayListScreen> {
     final isAlreadyExist = ref
         .read(playListProvider.notifier)
         .addPlayListName(_titleController.text, null);
-    
- 
+
     if (isAlreadyExist) {
       TopSnackBar.showCustomSnackBarError(context, 'Playlist Already Exist');
     } else {
       TopSnackBar.showCustomSnackBarSuccess(
           context, 'New Playlist ${_titleController.text} created');
       Navigator.pop(context);
-
     }
     _titleController.clear();
-  
   }
 
   @override
@@ -97,7 +99,8 @@ class _PlayListScreenState extends ConsumerState<PlayListScreen> {
                       deletePlaylist(ref, playlists[index].key);
                     },
                     renamePlaylist: () {
-                      renameClick(ref, playlists[index].key,playlists[index].pName);
+                      renameClick(
+                          ref, playlists[index].key, playlists[index].pName);
                     },
                     name: playlists[index].pName,
                     videos: playlists[index],

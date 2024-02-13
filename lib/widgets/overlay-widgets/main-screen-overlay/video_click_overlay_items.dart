@@ -20,7 +20,7 @@ class MainScreenOverlayitems extends StatelessWidget {
           Icon(
             icon,
             color: AppColors.iconColors,
-            size: 35,
+            size: 25,
           ),
           const SizedBox(
             width: 20,
@@ -29,7 +29,7 @@ class MainScreenOverlayitems extends StatelessWidget {
             title,
             style: Theme.of(context)
                 .textTheme
-                .bodyLarge!
+                .bodyMedium!
                 .copyWith(color: AppColors.fontnButton),
           )
         ],

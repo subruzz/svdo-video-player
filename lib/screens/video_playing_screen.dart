@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:svdomain/data/models/liked_video.dart';
@@ -8,11 +7,14 @@ import 'package:svdomain/data/models/recently_watched.dart';
 import 'package:svdomain/data/video-related/video-playing/video_playing.dart';
 import 'package:svdomain/provider/liked_videos_provider.dart';
 import 'package:svdomain/provider/recently_watched_provider.dart';
+import 'package:svdomain/provider/theme-providers/settings_provider.dart';
+import 'package:svdomain/screens/add_to_playlist.dart';
 import 'package:svdomain/widgets/helping-widgets/video-playing-screen/video.dart';
 import 'package:svdomain/widgets/helping-widgets/video-playing-screen/video_controller.dart';
 import 'package:svdomain/widgets/helping-widgets/video-playing-screen/video_progress.dart';
 import 'package:svdomain/widgets/helping-widgets/video-playing-screen/video_title.dart';
 import 'package:svdomain/widgets/snackbars/top_snackbar.dart';
+import 'package:video_player/video_player.dart';
 import 'package:volume_controller/volume_controller.dart';
 
 class VideoPlayingScreen extends ConsumerStatefulWidget {
@@ -97,16 +99,23 @@ class _VideoPlayingScreenState extends ConsumerState<VideoPlayingScreen>
 
   //to add to recent
   void addRecent() {
-    ref.read(recentlyWatchedProvider.notifier).addToRecent(
-          RecentVideos(
-            videoFile: file,
-            recentTime: DateTime.now(),
-            totalLength: _controller.value.duration.inSeconds.toDouble(),
-            watchedLength: _controller.value.position.inSeconds.toDouble(),
-          ),
-        );
-  }
+    final isRecentEnabled = ref.watch(settingsProvider)[Filter.showRecents];
 
+    if (isRecentEnabled != null && isRecentEnabled) {
+      ref.read(recentlyWatchedProvider.notifier).addToRecent(
+            RecentVideos(
+              videoFile: file,
+              recentTime: DateTime.now(),
+              totalLength: _controller.value.duration.inSeconds.toDouble(),
+              watchedLength: _controller.value.position.inSeconds.toDouble(),
+            ),
+          );
+    }
+  }
+//set playback speed
+void setPlaybackSpeed(double value){
+  
+}
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
@@ -223,7 +232,7 @@ class _VideoPlayingScreenState extends ConsumerState<VideoPlayingScreen>
                         if (details.localPosition.dx >
                             MediaQuery.of(context).size.width / 2) {
                           double deltaY = details.delta.dy;
-        
+
                           _adjustVolume(deltaY);
                         }
                       },
@@ -249,6 +258,16 @@ class _VideoPlayingScreenState extends ConsumerState<VideoPlayingScreen>
                           children: [
                             if (isPortrait)
                               VideoTitle(
+                                addToPlaylist: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (ctx) => AddToPlayListScreen(
+                                          videoPath: widget.singleVideo ??
+                                              widget.video![currentIndex]),
+                                    ),
+                                  );
+                                },
                                 addToLiked: (file) {
                                   addToLiked(file);
                                 },
@@ -256,6 +275,13 @@ class _VideoPlayingScreenState extends ConsumerState<VideoPlayingScreen>
                               ),
                             _controller.value.isInitialized
                                 ? VideoItem(
+                                    videoHold: (double value) {
+                                      _controller.setPlaybackSpeed(value);
+                                      setState(() {
+                                        _isshowDuration =
+                                            value == 1 ? false : true;
+                                      });
+                                    },
                                     isShowDuration: _isshowDuration,
                                     isSeekLeft: _isSeekLeft,
                                     isSeekRight: _isSeekRight,

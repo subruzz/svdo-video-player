@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 final darkTheme = ThemeData(
   appBarTheme: const AppBarTheme(
@@ -12,36 +11,42 @@ final darkTheme = ThemeData(
     seedColor: Colors.black,
   ),
   canvasColor: Colors.black,
-  textTheme: TextTheme(
-    bodyLarge: GoogleFonts.montserrat(
+  textTheme:const  TextTheme(
+    bodyLarge: TextStyle(
       fontSize: 22,
       color: Colors.white,
       fontWeight: FontWeight.bold,
+      fontFamily: 'Montserrat',
     ),
-    bodyMedium: GoogleFonts.montserrat(
+    bodyMedium: TextStyle(
       fontSize: 20,
       color: Colors.white,
       fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
-    bodySmall: GoogleFonts.montserrat(
+    bodySmall: TextStyle(
       fontSize: 19,
       color: Colors.white,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
-    labelLarge: GoogleFonts.montserrat(
+    labelLarge: TextStyle(
       fontSize: 16,
       color: Colors.white,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
-    labelMedium: GoogleFonts.montserrat(
+    labelMedium: TextStyle(
       fontSize: 14,
       color: Colors.white,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
-    labelSmall: GoogleFonts.montserrat(
+    labelSmall: TextStyle(
       fontSize: 12,
       color: Colors.white,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
   ),
 );
@@ -56,36 +61,42 @@ final lightTheme = ThemeData(
     seedColor: Colors.white,
   ),
   canvasColor: Colors.white,
-  textTheme: TextTheme(
-    bodyLarge: GoogleFonts.montserrat(
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(
       fontSize: 22,
       color: Colors.black,
       fontWeight: FontWeight.bold,
+      fontFamily: 'Montserrat',
     ),
-    bodyMedium: GoogleFonts.montserrat(
+    bodyMedium: TextStyle(
       fontSize: 20,
       color: Colors.black,
       fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
-    bodySmall: GoogleFonts.montserrat(
+    bodySmall: TextStyle(
       fontSize: 19,
       color: Colors.black,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
-    labelLarge: GoogleFonts.montserrat(
+    labelLarge: TextStyle(
       fontSize: 16,
       color: Colors.black,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
-    labelMedium: GoogleFonts.montserrat(
+    labelMedium: TextStyle(
       fontSize: 14,
       color: Colors.black,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
-    labelSmall: GoogleFonts.montserrat(
+    labelSmall: TextStyle(
       fontSize: 12,
       color: Colors.black,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      fontFamily: 'Montserrat', // Example of using the built-in 'Roboto' font
     ),
   ),
 );

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:svdomain/data/video-related/video-playing/video_playing.dart';
+import 'package:svdomain/widgets/helping-widgets/video-playing-screen/speed_popup.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoItem extends StatelessWidget {
   const VideoItem(
       {super.key,
       required this.isPortrait,
+      required this.videoHold,
       required this.controller,
       required this.isSeekLeft,
       required this.isSeekRight,
@@ -21,6 +23,11 @@ class VideoItem extends StatelessWidget {
   final bool isSeekLeft;
   final bool isSeekRight;
   final bool isShowDuration;
+  final void Function(double value) videoHold;
+  void setPlaybackSpeed(double value) {
+    controller.setPlaybackSpeed(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -28,13 +35,13 @@ class VideoItem extends StatelessWidget {
           onLongPressStart: (details) {
             if (details.localPosition.dx >
                 MediaQuery.of(context).size.width / 2) {
-              controller.setPlaybackSpeed(2);
+              videoHold(1.5);
             } else {
-              controller.setPlaybackSpeed(0.25);
+              videoHold(.5);
             }
           },
           onLongPressEnd: (details) {
-            controller.setPlaybackSpeed(1);
+            videoHold(1);
           },
           onDoubleTapDown: (details) {
             if (details.localPosition.dx >
@@ -61,18 +68,13 @@ class VideoItem extends StatelessWidget {
                       : Icons.play_arrow)
                   : const SizedBox(),
               Positioned(
-                  top: 10,
-                  left: 10,
-                  child: IconButton(
-                      onPressed: () {
-                        controller.setPlaybackSpeed(2);
-                      },
-                      icon: const Icon(Icons.settings))),
+                top: 10,
+                left: 10,
+                child: SpeedSelect(setPlaybackSpeed: setPlaybackSpeed)
+              ),
               if (isSeekRight)
                 Positioned(
-                  // Adjust as per your requirement
                   right: 0,
-                  // Distance from the right edge of the parent widget
                   child: Container(
                     width: 100, // Specify width
                     height: 200, // Specify height
@@ -106,9 +108,7 @@ class VideoItem extends StatelessWidget {
                     }),
               if (isSeekLeft)
                 Positioned(
-                  // Adjust as per your requirement
                   left: 0,
-                  // Distance from the right edge of the parent widget
                   child: Container(
                     width: 100, // Specify width
                     height: 200, // Specify height

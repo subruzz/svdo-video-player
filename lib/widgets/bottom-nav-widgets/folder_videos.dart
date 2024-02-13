@@ -10,8 +10,7 @@ class FolderVideos extends ConsumerWidget {
   const FolderVideos({
     super.key,
   });
-    void onFolderClick(
-      String folder, BuildContext context, WidgetRef ref) {
+  void onFolderClick(String folder, BuildContext context, WidgetRef ref) {
     ref.read(filterFolder.notifier).filterFolder(folder, ref);
     Navigator.push(
       context,
@@ -22,20 +21,39 @@ class FolderVideos extends ConsumerWidget {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final folders = ref.watch(videoFolderProvider);
 
+    // return Column(
+    //   children: [
+    //     ListTile(
+    //       onTap: () {
+    //         Navigator.push(context,
+    //             MaterialPageRoute(builder: (ctx) =>const  TrimmedVideoScreen()));
+    //       },
+    //       leading:const  Icon(
+    //         Icons.content_cut,
+    //         size: 30,
+    //       ),
+    //       title: Text(
+    //         'Trimmed Video',
+    //         style: Theme.of(context).textTheme.labelLarge,
+    //       ),
+    //     ),
     return Expanded(
       child: ListView.builder(
         itemCount: folders.length,
         itemBuilder: (context, index) => EachFolder(
           folder: VideoDetailsGenerate.getVideoName(folders[index]),
           onFolderClick: () {
-       onFolderClick(folders[index], context, ref);
+            onFolderClick(folders[index], context, ref);
           },
         ),
       ),
     );
+    // ],
+    // );
   }
 }

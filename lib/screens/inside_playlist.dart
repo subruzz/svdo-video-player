@@ -38,7 +38,7 @@ class _InsidePlaylistState extends ConsumerState<InsidePlaylist> {
         builder: (ctx) => VideoPlayingScreen(
           video: videos,
           index: index,
-          videoTitle: VideoDetailsGenerate.getVideoName(videos![index]),
+          videoTitle: VideoDetailsGenerate.getVideoName(videos[index]),
         ),
       ),
     );

@@ -3,7 +3,7 @@ import 'package:svdomain/data/models/liked_video.dart';
 import 'package:svdomain/screens/inside_playlist.dart';
 
 class LikedVideoSingle extends StatelessWidget {
-  const LikedVideoSingle({super.key,required this.likedVideos});
+  const LikedVideoSingle({super.key, required this.likedVideos});
   final List<LikedVideo> likedVideos;
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class LikedVideoSingle extends StatelessWidget {
             ),
           );
         } catch (e) {
-          print(e);
+          return;
         }
       },
       child: Row(

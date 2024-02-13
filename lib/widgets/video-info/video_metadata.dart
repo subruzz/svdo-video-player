@@ -34,7 +34,8 @@ class MainVideoMetaData extends StatelessWidget {
     return FutureBuilder(
         future: VideoThumbnail.loadThumbnail(videoPath),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState == ConnectionState.waiting ||
+              snapshot.data == null) {
             return Image.asset(
               'assets/images/applogo.png',
               width: 200,

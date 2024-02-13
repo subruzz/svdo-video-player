@@ -50,7 +50,6 @@ class PlaylistPopover{
               )
             ],
           ),
-          onPop: () => print('Popover was popped!'),
         );
   }
 }

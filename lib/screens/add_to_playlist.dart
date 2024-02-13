@@ -22,6 +22,7 @@ class _AddToPlayListScreenState extends ConsumerState<AddToPlayListScreen> {
   @override
   void dispose() {
     _titleController.dispose();
+
     super.dispose();
   }
 
@@ -84,12 +85,11 @@ class _AddToPlayListScreenState extends ConsumerState<AddToPlayListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final playlists = ref.watch(filterAddPlaylist);
+    final playlists = ref.watch(playListProvider);
     final avaiablePlaylist = playlists
-        .where((element) => element.pVideos.contains(widget.videoPath) == false)
+        .where((element) => !element.pVideos.contains(widget.videoPath))
         .toList();
-    print(avaiablePlaylist);
-
+   
     return PopScope(
       onPopInvoked: (value) {
         ref.read(filterAddPlaylist.notifier).onback();

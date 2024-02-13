@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:svdomain/data/models/liked_video.dart';
 import 'package:svdomain/data/video-related/video_details.dart';
-import 'package:svdomain/screens/video_trimming_screen.dart';
 import 'package:svdomain/util-classes/styling/app_colors.dart';
 import 'package:svdomain/widgets/overlay-widgets/main-screen-overlay/video_click_overlay_items.dart';
 import 'package:svdomain/provider/liked_videos_provider.dart';
@@ -89,7 +88,7 @@ class MainScreenOverlay extends ConsumerWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      height: screenHeight / 3, // Set the height as needed
+      height: screenHeight / 2.8, // Set the height as needed
       child: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -106,20 +105,24 @@ class MainScreenOverlay extends ConsumerWidget {
               title: 'Add to Playlist',
               icon: Icons.playlist_add,
             ),
+            // const SizedBox(
+            //   height: 15,
+            // ),
+            // MainScreenOverlayitems(
+            //   title: 'Trim Video',
+            //   icon: Icons.content_cut,
+            //   itemClick: () {
+            //     Navigator.pop(context);
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (ctx) => TrimmerView(file: allvideos[index]),
+            //       ),
+            //     );
+            //   },
+            // ),
             const SizedBox(
               height: 15,
-            ),
-            MainScreenOverlayitems(
-              title: 'Trim Video',
-              icon: Icons.favorite,
-              itemClick: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (ctx) => TrimmerView(file: allvideos[index]),
-                //   ),
-                // );
-              },
             ),
             MainScreenOverlayitems(
               title: 'Favorite',

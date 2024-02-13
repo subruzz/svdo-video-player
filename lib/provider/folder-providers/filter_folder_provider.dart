@@ -5,14 +5,11 @@ class FilterFolder extends StateNotifier<List<String>> {
   FilterFolder() : super([]);
 
   void filterFolder(String folder, WidgetRef ref) {
-    print(folder);
 
     final videoPaths = ref.read(videoPathsProvider);
-    print(videoPaths);
     final folderVideos =
         videoPaths.where((element) => element.startsWith(folder)).toList();
     state = folderVideos;
-    print(folderVideos);
   }
 }
 
