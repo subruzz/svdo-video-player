@@ -1,7 +1,10 @@
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lottie/lottie.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:svdomain/data/video-related/get_videos.dart';
 import 'package:svdomain/util-classes/styling/app_colors.dart';
 import 'package:svdomain/widgets/bottom-nav-widgets/all_video_display.dart';
 import 'package:svdomain/widgets/bottom-nav-widgets/folder_videos.dart';
@@ -18,6 +21,15 @@ class MainScreen extends ConsumerStatefulWidget {
 }
 
 class _MainScreenState extends ConsumerState<MainScreen> {
+  // void checkPermission()async {
+  //   PermissionStatus permissionStatus;
+  //   final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  //   final androidInfo = await deviceInfo.androidInfo;
+    
+  //   if(permissionStatus.isDenied){
+      
+  //   }
+  // }
   bool isLoading = true;
   IconData? _icon = Icons.search;
   IconData? _icon2 = Icons.sort;
